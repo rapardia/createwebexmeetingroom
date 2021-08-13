@@ -29,7 +29,7 @@ def attendees(meetingid):
         addmemb(attendee)
 
 def meetingid():
-    meetingnum = '1860033905' #input('Enter Meeting Number: ')
+    meetingnum = input('Enter Meeting Number: ')
     quaryParams = { 'meetingNumber': meetingnum }
     httpHeaders = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + access_token }
     response = requests.get( url = apiUrl + "meetings", headers = httpHeaders, params = quaryParams )
