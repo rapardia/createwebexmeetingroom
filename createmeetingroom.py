@@ -1,7 +1,7 @@
 import requests
 import json
 
-access_token = 'M2UwYmU4ZTYtM2NiMy00Y2ZkLWFhMWMtMjlkMzA1MzkwMDdmMjJkMjgxOGQtYzZh_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'
+access_token = 
 
 apiUrl = 'https://webexapis.com/v1/'
 httpHeaders = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + access_token }
