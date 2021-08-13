@@ -1,13 +1,15 @@
 import requests
 import json
 
-access_token = ""
+access_token = 'M2UwYmU4ZTYtM2NiMy00Y2ZkLWFhMWMtMjlkMzA1MzkwMDdmMjJkMjgxOGQtYzZh_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'
+
 apiUrl = 'https://webexapis.com/v1/'
 httpHeaders = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + access_token }
 
 def addmemb(attendee):
-    quaryParams = { 'roomId': roomid, 'personId': attendee }
-    response = requests.post( url = apiUrl + "rooms", headers = httpHeaders, json = quaryParams )
+    quaryParams = { 'roomId': roomid, 'personEmail': attendee }
+    response = requests.post( url = apiUrl + "memberships", headers = httpHeaders, json = quaryParams )
+    
 
 def createroom(title):
     global roomid
@@ -19,16 +21,17 @@ def createroom(title):
 
 def attendees(meetingid):
     quaryParams = { 'meetingId': meetingid }
-    response = requests.get( url = apiUrl + "meetings", headers = httpHeaders, params = quaryParams )
+    response = requests.get( url = apiUrl + "meetingInvitees", headers = httpHeaders, params = quaryParams )
     json_response = response.json()
     resp = json_response['items']
     for a in resp:
-        attendee = a['id']
+        attendee = a['email']
         addmemb(attendee)
 
 def meetingid():
-    meetingnum = input('Enter Meeting Number: ')
+    meetingnum = '1860033905' #input('Enter Meeting Number: ')
     quaryParams = { 'meetingNumber': meetingnum }
+    httpHeaders = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + access_token }
     response = requests.get( url = apiUrl + "meetings", headers = httpHeaders, params = quaryParams )
     json_response = response.json()
     resp = json_response['items']
@@ -37,7 +40,6 @@ def meetingid():
         title = i['title']
     createroom(title)
     attendees(meetingid)
-    
 
 
 meetingid()
